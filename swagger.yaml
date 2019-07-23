@@ -1,0 +1,78 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: test
+  description: ""
+# basePath: /msm
+#host: "localhost:28211"
+produces:
+  - application/json
+  - application/text
+  - text/plain
+consumes:
+  - application/json
+  - application/text
+  - text/plain
+  - multipart/form-data
+  - application/x-www-form-urlencoded
+tags:
+  - name: test
+    description: 测试
+
+paths:
+  '/test/link/{info}':
+    get:
+      tags:
+        - test
+      summary: 连接测试
+      description: 连接测试
+      parameters:
+        - name: info
+          description: 信息
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ReturnModel'
+  '/user/login':
+    post:
+      tags:
+        - test
+      summary: 登录
+      description: 用户登录
+      parameters:
+        - name: info
+          in: body
+          description: 用户信息
+          required: true
+          schema:
+            $ref: '#/definitions/Info'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ReturnModel'
+definitions:
+  ReturnModel:
+    description: 向后返回值的返回码容器
+    type: object
+    properties:
+      code:
+        type: string
+        description: 返回码
+      errMsg:
+        type: object
+        description: 附加消息
+      data:
+        type: object
+        description: 返回的数据
+  Info:
+    description: ""
+    type: object
+    properties:
+      "data":
+        type: string
+        description: 数据
